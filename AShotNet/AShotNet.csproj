@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C1042932-561C-4E1F-99A6-DF3AEFF01DD0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AShotNet</RootNamespace>
+    <AssemblyName>AShotNet</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="NHamcrest">
+      <HintPath>..\packages\NHamcrest.1.2.1\lib\NHamcrest.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WebDriver">
+      <HintPath>..\packages\Selenium.WebDriver.2.45.0\lib\net40\WebDriver.dll</HintPath>
+    </Reference>
+    <Reference Include="WebDriver.Support">
+      <HintPath>..\packages\Selenium.Support.2.45.0\lib\net40\WebDriver.Support.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AShot.cs" />
+    <Compile Include="Comparison\ImageDiff.cs" />
+    <Compile Include="Comparison\ImageDiffer.cs" />
+    <Compile Include="Coordinates\Coords.cs" />
+    <Compile Include="Coordinates\CoordsPreparationStrategy.cs" />
+    <Compile Include="Coordinates\CoordsProvider.cs" />
+    <Compile Include="Coordinates\JqueryCoordsProvider.cs" />
+    <Compile Include="Coordinates\WebDriverCoordsProvider.cs" />
+    <Compile Include="Cropper\DefaultCropper.cs" />
+    <Compile Include="Cropper\ImageCropper.cs" />
+    <Compile Include="Cropper\Indent\BlurFilter.cs" />
+    <Compile Include="Cropper\Indent\IndentCropper.cs" />
+    <Compile Include="Cropper\Indent\IndentFilerFactory.cs" />
+    <Compile Include="Cropper\Indent\IndentFilter.cs" />
+    <Compile Include="Cropper\Indent\MonochromeFilter.cs" />
+    <Compile Include="Extentions\CollectionExtention.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Screenshot.cs" />
+    <Compile Include="ScreenTaker\HeadCuttingShootingStrategy.cs" />
+    <Compile Include="ScreenTaker\ScreenTaker.cs" />
+    <Compile Include="ScreenTaker\ShootingStrategy.cs" />
+    <Compile Include="ScreenTaker\VerticalPastingShootingStrategy.cs" />
+    <Compile Include="ScreenTaker\ViewportPastingStrategy.cs" />
+    <Compile Include="Util\ImageTool.cs" />
+    <Compile Include="Util\JsCoords.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

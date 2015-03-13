@@ -1,0 +1,5 @@
+D:\sandbox\scm\git\ashot-net\AShotNet\AShotNet\bin\Debug\AShotNet.dll
+D:\sandbox\scm\git\ashot-net\AShotNet\AShotNet\bin\Debug\AShotNet.pdb
+D:\sandbox\scm\git\ashot-net\AShotNet\AShotNet\obj\Debug\AShotNet.csprojResolveAssemblyReference.cache
+D:\sandbox\scm\git\ashot-net\AShotNet\AShotNet\obj\Debug\AShotNet.dll
+D:\sandbox\scm\git\ashot-net\AShotNet\AShotNet\obj\Debug\AShotNet.pdb
