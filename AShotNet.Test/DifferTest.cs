@@ -1,25 +1,33 @@
-using Sharpen;
-
-namespace ru.yandex.qatools.elementscompare.tests
+namespace AShotNet.Test
 {
 	/// <author><a href="pazone@yandex-team.ru">Pavel Zorin</a></author>
+ [DeploymentItem("img", "./img/")]
+ [TestClass]
 	public class DifferTest
 	{
-		public static readonly java.awt.image.BufferedImage IMAGE_A_SMALL = loadImage("img/A_s.png"
-			);
+		public static readonly Bitmap IMAGE_A_SMALL = loadImage("img/A_s.png"			);
 
-		public static readonly java.awt.image.BufferedImage IMAGE_B_SMALL = loadImage("img/B_s.png"
-			);
+    public static readonly Bitmap IMAGE_B_SMALL = loadImage("img/B_s.png");
 
-		public static readonly ru.yandex.qatools.ashot.comparison.ImageDiffer IMAGE_DIFFER
-			 = new ru.yandex.qatools.ashot.comparison.ImageDiffer().withColorDistortion(10);
+		public static readonly ImageDiffer IMAGE_DIFFER 			 = new ImageDiffer().withColorDistortion(10);
 
-		public static java.awt.image.BufferedImage loadImage(string path)
+    public static Bitmap loadImage(string path)
 		{
-			try
-			{
-				return javax.imageio.ImageIO.read(java.lang.ClassLoader.getSystemResourceAsStream
-					(path));
+			
+        try{
+
+             Assembly currentAssembly = Assembly.GetAssembly(this.GetType());
+            string asseblyLocation = currentAssembly.Location;
+
+            logOutputDir = Path.GetDirectoryName(asseblyLocation);
+
+
+
+              return new Bitmap(Image.FromFile(logOutputDir + path);
+              
+       
+
+			
 			}
 			catch (System.Exception e)
 			{
@@ -28,7 +36,7 @@ namespace ru.yandex.qatools.elementscompare.tests
 		}
 
 		/// <exception cref="System.Exception"/>
-		[NUnit.Framework.Test]
+     [TestMethod]
 		public virtual void testSameSizeDiff()
 		{
 			ru.yandex.qatools.ashot.comparison.ImageDiff diff = IMAGE_DIFFER.makeDiff(IMAGE_A_SMALL
@@ -38,7 +46,7 @@ namespace ru.yandex.qatools.elementscompare.tests
 		}
 
 		/// <exception cref="System.Exception"/>
-		[NUnit.Framework.Test]
+ [TestMethod]
 		public virtual void testSetDiffColor()
 		{
 			ru.yandex.qatools.ashot.comparison.ImageDiff diff = IMAGE_DIFFER.makeDiff(IMAGE_A_SMALL
@@ -49,7 +57,7 @@ namespace ru.yandex.qatools.elementscompare.tests
 		}
 
 		/// <exception cref="System.Exception"/>
-		[NUnit.Framework.Test]
+ [TestMethod]
 		public virtual void testSetDiffSizeTrigger()
 		{
 			ru.yandex.qatools.ashot.comparison.ImageDiff diff = IMAGE_DIFFER.makeDiff(IMAGE_A_SMALL
@@ -61,7 +69,7 @@ namespace ru.yandex.qatools.elementscompare.tests
 		}
 
 		/// <exception cref="System.Exception"/>
-		[NUnit.Framework.Test]
+ [TestMethod]
 		public virtual void testEqualImagesDiff()
 		{
 			ru.yandex.qatools.ashot.comparison.ImageDiff diff = IMAGE_DIFFER.makeDiff(IMAGE_A_SMALL
@@ -70,7 +78,7 @@ namespace ru.yandex.qatools.elementscompare.tests
 		}
 
 		/// <exception cref="System.Exception"/>
-		[NUnit.Framework.Test]
+ [TestMethod]
 		public virtual void testIgnoredCoordsSame()
 		{
 			ru.yandex.qatools.ashot.Screenshot a = createScreenshotWithSameIgnoredAreas(IMAGE_A_SMALL
@@ -83,7 +91,7 @@ namespace ru.yandex.qatools.elementscompare.tests
 		}
 
 		/// <exception cref="System.Exception"/>
-		[NUnit.Framework.Test]
+   [TestMethod]
 		public virtual void testIgnoredCoordsNotSame()
 		{
 			ru.yandex.qatools.ashot.Screenshot a = createScreenshotWithIgnoredAreas(IMAGE_A_SMALL
@@ -98,7 +106,7 @@ namespace ru.yandex.qatools.elementscompare.tests
 		}
 
 		/// <exception cref="System.Exception"/>
-		[NUnit.Framework.Test]
+   [TestMethod]
 		public virtual void testCoordsToCompareAndIgnoredCombine()
 		{
 			ru.yandex.qatools.ashot.Screenshot a = createScreenshotWithIgnoredAreas(IMAGE_A_SMALL

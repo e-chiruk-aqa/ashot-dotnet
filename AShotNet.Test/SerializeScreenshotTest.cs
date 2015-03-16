@@ -1,37 +1,35 @@
-using Sharpen;
 
-namespace ru.yandex.qatools.elementscompare.tests
+namespace AShotNet.Test
 {
 	/// <author><a href="eoff@yandex-team.ru">Maksim Mukosey</a></author>
-	public class SerializeScreenshotTest
+   [TestClass]
+    public class SerializeScreenshotTest
 	{
-		private static readonly java.awt.image.BufferedImage IMAGE_A_SMALL = ru.yandex.qatools.elementscompare.tests.DifferTest.loadImage
-			("img/A_s.png");
+		private static readonly Bitmap IMAGE_A_SMALL = DifferTest.loadImage("img/A_s.png");
 
-		private sealed class _HashSet_32 : java.util.HashSet<ru.yandex.qatools.ashot.coordinates.Coords
+		private sealed class _HashSet_32 : HashSet<ru.yandex.qatools.ashot.coordinates.Coords
 			>
 		{
 			public _HashSet_32()
 			{
 				{
-					this.add(new ru.yandex.qatools.ashot.coordinates.Coords(20, 20, 200, 90));
+					this.add(new Coords(20, 20, 200, 90));
 				}
 			}
 		}
 
-		public static readonly System.Collections.Generic.ICollection<ru.yandex.qatools.ashot.coordinates.Coords
-			> IGNORED_AREAS = new _HashSet_32();
+		public static readonly System.Collections.Generic.ICollection<Coords			> IGNORED_AREAS = new _HashSet_32();
 
-		private java.io.File serializedFile;
+		private File serializedFile;
 
 		/// <exception cref="System.IO.IOException"/>
-		[NUnit.Framework.SetUp]
+      [TestInitialize]
 		public virtual void setUp()
 		{
-			serializedFile = java.io.File.createTempFile("serialized", "screenshot");
+			serializedFile = File.createTempFile("serialized", "screenshot");
 		}
 
-		[NUnit.Framework.TearDown]
+     [TestCleanup]
 		public virtual void tearDown()
 		{
 			serializedFile.delete();
@@ -39,7 +37,7 @@ namespace ru.yandex.qatools.elementscompare.tests
 
 		/// <exception cref="System.IO.IOException"/>
 		/// <exception cref="java.lang.ClassNotFoundException"/>
-		[NUnit.Framework.Test]
+  [TestMethod]
 		public virtual void serializeWithIgnoredAreas()
 		{
 			ru.yandex.qatools.ashot.Screenshot screenshot = new ru.yandex.qatools.ashot.Screenshot
@@ -61,7 +59,7 @@ namespace ru.yandex.qatools.elementscompare.tests
 
 		/// <exception cref="System.IO.IOException"/>
 		/// <exception cref="java.lang.ClassNotFoundException"/>
-		[NUnit.Framework.Test]
+  [TestMethod]
 		public virtual void serializeWithoutIgnoredAreas()
 		{
 			ru.yandex.qatools.ashot.Screenshot screenshot = new ru.yandex.qatools.ashot.Screenshot

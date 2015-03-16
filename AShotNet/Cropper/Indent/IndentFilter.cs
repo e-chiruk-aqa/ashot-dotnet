@@ -9,7 +9,6 @@ namespace AShotNet.Cropper.Indent
     [Serializable]
     public abstract class IndentFilter
     {
-        public abstract Bitmap apply(Bitmap image
-            );
+        public abstract Bitmap apply(Bitmap image);
     }
 }

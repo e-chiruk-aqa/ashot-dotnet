@@ -1,15 +1,13 @@
-using Sharpen;
-
-namespace ru.yandex.qatools.elementscompare.tests
+namespace AShotNet.Test
 {
 	/// <author><a href="pazone@yandex-team.ru">Pavel Zorin</a></author>
-	public class ScreenTakerTest
+     [TestClass]
+    public class ScreenTakerTest
 	{
 		/// <exception cref="System.IO.IOException"/>
 		public static org.openqa.selenium.WebDriver getDriver()
 		{
-			org.openqa.selenium.WebDriver driverMock = org.mockito.Mockito.mock<org.openqa.selenium.WebDriver
-				>(org.mockito.Mockito.withSettings().extraInterfaces(Sharpen.Runtime.getClassForType
+        IWebDriver driverMock = new Mock<IWebDriver>()(org.mockito.Mockito.withSettings().extraInterfaces(Sharpen.Runtime.getClassForType
 				(typeof(org.openqa.selenium.TakesScreenshot)), Sharpen.Runtime.getClassForType(typeof(
 				org.openqa.selenium.JavascriptExecutor))));
 			org.mockito.Mockito.when(asTakingScreenshot(driverMock).getScreenshotAs(org.openqa.selenium.OutputType
@@ -21,7 +19,7 @@ namespace ru.yandex.qatools.elementscompare.tests
 		}
 
 		/// <exception cref="System.Exception"/>
-		[NUnit.Framework.Test]
+  [TestMethod]
 		public virtual void testDpr()
 		{
 			ru.yandex.qatools.ashot.Screenshot screenshot = new ru.yandex.qatools.ashot.AShot
@@ -34,10 +32,11 @@ namespace ru.yandex.qatools.elementscompare.tests
 		private static org.openqa.selenium.TakesScreenshot asTakingScreenshot(org.openqa.selenium.WebDriver
 			 driver)
 		{
+
 			return (org.openqa.selenium.TakesScreenshot)driver;
 		}
 
-		private static org.openqa.selenium.JavascriptExecutor asJavascriptExecutor(org.openqa.selenium.WebDriver
+		private static org.openqa.selenium.JavascriptExecutor asJavascriptExecutor(IWebDriver
 			 driver)
 		{
 			return (org.openqa.selenium.JavascriptExecutor)driver;

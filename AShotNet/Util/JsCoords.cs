@@ -2,34 +2,46 @@ namespace AShotNet.Util
 {
     using System;
     using System.IO;
-    using System.Threading;
-    using AShotNet.Coordinates;
-    using Extentions;
+    using System.Reflection;
+    using Coordinates;
+    using Newtonsoft.Json.Linq;
     using OpenQA.Selenium;
 
-    /// <author><a href="pazone@yandex-team.ru">Pavel Zorin</a></author>
-	public class JsCoords
-	{
-		public const string COORDS_JS_PATH = "js/coords-single.js";
+    /// <author>
+    ///     <a href="pazone@yandex-team.ru">Pavel Zorin</a>
+    /// </author>
+    public class JsCoords
+    {
+        public static Coords findCoordsWithJquery(IWebDriver driver, IWebElement element)
+        {
+            try
+            {
+                Assembly assembly = Assembly.GetExecutingAssembly();
+                string resourceName = "Resources.js.coords-single.js";
 
-		public static Coords findCoordsWithJquery(IWebDriver driver, IWebElement element)
-		{
-			try
-			{
-				string script = org.apache.commons.io.IOUtils.toString(Thread.CurrentThread.getContextClassLoader().getResourceAsStream(COORDS_JS_PATH));
-				System.Collections.IList result = (System.Collections.IList)((IJavaScriptExecutor
-					)driver).ExecuteScript(script, element);
-				if (result.IsEmpty())
-				{
-					throw new System.Exception("Unable to find coordinates with jQuery.");
-				}
-				return new com.google.gson.Gson().fromJson<Coords
-					>((string)result[0]);
-			}
-			catch (IOException e)
-			{
-				throw new Exception(e.Message,e);
-			}
-		}
-	}
+                string result;
+
+                using (Stream stream = assembly.GetManifestResourceStream(resourceName))
+                {
+                    using (var reader = new StreamReader(stream))
+                    {
+                        result = reader.ReadToEnd();
+                    }
+                }
+
+
+                JObject jsonObj = JObject.Parse(result);
+                var x = jsonObj["x"].Value<int>();
+                var y = jsonObj["y"].Value<int>();
+                var w = jsonObj["width"].Value<int>();
+                var h = jsonObj["height"].Value<int>();
+
+                return new Coords(x, y, w, h);
+            }
+            catch (IOException e)
+            {
+                throw new Exception(e.Message, e);
+            }
+        }
+    }
 }

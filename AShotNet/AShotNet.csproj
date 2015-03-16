@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="NHamcrest">
       <HintPath>..\packages\NHamcrest.1.2.1\lib\NHamcrest.dll</HintPath>
     </Reference>
@@ -64,6 +68,7 @@
     <Compile Include="Cropper\Indent\IndentFilerFactory.cs" />
     <Compile Include="Cropper\Indent\IndentFilter.cs" />
     <Compile Include="Cropper\Indent\MonochromeFilter.cs" />
+    <Compile Include="Extentions\BitmapExtentions.cs" />
     <Compile Include="Extentions\CollectionExtention.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Screenshot.cs" />
@@ -77,6 +82,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\js\coords-single.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

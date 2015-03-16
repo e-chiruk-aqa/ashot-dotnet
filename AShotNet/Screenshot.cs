@@ -32,12 +32,12 @@ namespace AShotNet
         ///     Actually it is coordinates of cropped area on origin image.
         ///     Should be set if image is cropped.
         /// </remarks>
-        private Coords originShift = new Coords(0, 0);
+        private Coords originShift = new Coords(0, 0, 0, 0);
 
         public Screenshot(Bitmap image)
         {
             this.image = image;
-            this.coordsToCompare = new HashSet<Coords>(java.util.Arrays.asList(Coords.ofImage(image)));
+            this.coordsToCompare = new HashSet<Coords> {Coords.ofImage(image)};
         }
 
         public virtual Bitmap getImage()
@@ -82,14 +82,14 @@ namespace AShotNet
         }
 
         /// <exception cref="System.IO.IOException" />
-        private void writeObject(Stream @out)
+        private void WriteObject(Stream @out)
         {
             this.image.Save(@out, ImageFormat.Png);
         }
 
         /// <exception cref="System.IO.IOException" />
         /// <exception cref="java.lang.ClassNotFoundException" />
-        private void readObject(Stream @in)
+        private void ReadObject(Stream @in)
         {
             this.image = new Bitmap(Image.FromStream(@in));
         }

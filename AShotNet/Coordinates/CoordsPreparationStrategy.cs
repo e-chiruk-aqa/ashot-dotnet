@@ -38,8 +38,7 @@ namespace AShotNet.Coordinates
 
             public override ICollection<Coords> prepare(ICollection<Coords> coordinates)
             {
-                return Coords.intersection(this.screenshot.getCoordsToCompare(), Coords.setReferenceCoords(this.screenshot.getOriginShift
-                    (), new HashSet<Coords>(coordinates)));
+                return Coords.Intersect(this.screenshot.getCoordsToCompare(), Coords.setReferenceCoords(this.screenshot.getOriginShift(), new HashSet<Coords>(coordinates)));
             }
         }
     }

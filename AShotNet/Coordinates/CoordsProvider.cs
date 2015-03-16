@@ -14,13 +14,11 @@ namespace AShotNet.Coordinates
 
         public virtual ICollection<Coords> ofElements(IWebDriver driver, IEnumerable<IWebElement> elements)
         {
-            ICollection<Coords
-                > elementsCoords = new HashSet<Coords
-                    >();
+            ICollection<Coords> elementsCoords = new HashSet<Coords>();
             foreach (IWebElement element in elements)
             {
                 Coords elementCoords = this.ofElement(driver, element);
-                if (!elementCoords.IsEmpty())
+                if (!elementCoords.IsEmpty)
                 {
                     elementsCoords.Add(elementCoords);
                 }
@@ -33,8 +31,7 @@ namespace AShotNet.Coordinates
             return this.ofElements(driver, elements);
         }
 
-        public virtual ICollection<Coords> locatedBy(IWebDriver driver, By locator
-            )
+        public virtual ICollection<Coords> locatedBy(IWebDriver driver, By locator)
         {
             return ofElements(driver, driver.FindElements(locator));
         }

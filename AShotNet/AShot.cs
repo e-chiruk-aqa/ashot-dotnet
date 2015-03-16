@@ -117,7 +117,7 @@ namespace AShotNet
         /// </remarks>
         /// <param name="dpr">device pixel ratio</param>
         /// <returns>this</returns>
-        public virtual AShot Dpr(float dpr)
+        public virtual AShot Dpr(int dpr)
         {
             this.taker.withDpr(dpr);
             return this;
@@ -148,7 +148,7 @@ namespace AShotNet
         /// <seealso cref="AShotNet.Screenshot" />
         public virtual Screenshot TakeScreenshot(IWebDriver driver, IWebElement element)
         {
-            return this.TakeScreenshot(driver, new Collection<IWebElement>() { element });
+            return this.TakeScreenshot(driver, new Collection<IWebElement> {element});
         }
 
         /// <summary>Takes the screenshot of whole page</summary>
@@ -165,7 +165,7 @@ namespace AShotNet
         }
 
         protected internal virtual ICollection<Coords> CompileIgnoredAreas(IWebDriver driver, CoordsPreparationStrategy
-                preparationStrategy)
+            preparationStrategy)
         {
             lock (this)
             {

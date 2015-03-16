@@ -4,6 +4,7 @@ namespace AShotNet.Cropper
     using System.Collections.Generic;
     using System.Drawing;
     using Coordinates;
+    using Extentions;
 
     /// <author>
     ///     <a href="pazone@yandex-team.ru">Pavel Zorin</a>
