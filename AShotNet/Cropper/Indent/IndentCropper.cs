@@ -28,7 +28,7 @@ namespace AShotNet.Cropper.Indent
             this.indent = DEFAULT_INDENT;
         }
 
-        protected internal override Screenshot cropScreenshot(Bitmap image, ICollection<Coords> coordsToCompare)
+        public override Screenshot cropScreenshot(Bitmap image, ICollection<Coords> coordsToCompare)
         {
             Coords cropArea = this.createCropArea(coordsToCompare);
             Coords indentMask = this.createIndentMask(cropArea, image);

@@ -11,7 +11,7 @@ namespace AShotNet.Cropper
     [Serializable]
     public class DefaultCropper : ImageCropper
     {
-        protected internal override Screenshot cropScreenshot(Bitmap image, ICollection<Coords> coordsToCompare)
+        public override Screenshot cropScreenshot(Bitmap image, ICollection<Coords> coordsToCompare)
         {
             Coords cropArea = Coords.unity(coordsToCompare);
             Coords imageIntersection = Coords.ofImage(image).Intersect(cropArea);

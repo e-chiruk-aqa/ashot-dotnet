@@ -45,6 +45,13 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="WebDriver">
+      <HintPath>..\packages\Selenium.WebDriver.2.45.0\lib\net40\WebDriver.dll</HintPath>
+    </Reference>
+    <Reference Include="WebDriver.Support">
+      <HintPath>..\packages\Selenium.Support.2.45.0\lib\net40\WebDriver.Support.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -59,7 +66,6 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="CroppersTest.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -70,24 +76,41 @@
     <Compile Include="ScreenTakerTest.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="SerializeScreenshotTest.cs">
-      <SubType>Code</SubType>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="img\A_s.png" />
-    <Content Include="img\B_s.png" />
-    <Content Include="img\expected\combined_diff.png" />
-    <Content Include="img\expected\dpr.png" />
-    <Content Include="img\expected\green_diff.png" />
-    <Content Include="img\expected\ignore_coords_not_same.png" />
-    <Content Include="img\expected\ignore_coords_same.png" />
-    <Content Include="img\expected\outside_dc.png" />
-    <Content Include="img\expected\outside_ic.png" />
-    <Content Include="img\expected\same_size_diff.png" />
+    <Content Include="img\A_s.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\B_s.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\expected\combined_diff.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\expected\dpr.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\expected\green_diff.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\expected\ignore_coords_not_same.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\expected\ignore_coords_same.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\expected\outside_dc.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\expected\outside_ic.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\expected\same_size_diff.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AShotNet\AShotNet.csproj">

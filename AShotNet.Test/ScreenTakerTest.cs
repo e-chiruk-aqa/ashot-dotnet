@@ -1,45 +1,52 @@
 namespace AShotNet.Test
 {
-	/// <author><a href="pazone@yandex-team.ru">Pavel Zorin</a></author>
-     [TestClass]
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using OpenQA.Selenium;
+    using OpenQA.Selenium.Firefox;
+    using Util;
+    using Screenshot = AShotNet.Screenshot;
+
+    /// <author>
+    ///     <a href="pazone@yandex-team.ru">Pavel Zorin</a>
+    /// </author>
+    [TestClass]
     public class ScreenTakerTest
-	{
-		/// <exception cref="System.IO.IOException"/>
-		public static org.openqa.selenium.WebDriver getDriver()
-		{
-        IWebDriver driverMock = new Mock<IWebDriver>()(org.mockito.Mockito.withSettings().extraInterfaces(Sharpen.Runtime.getClassForType
-				(typeof(org.openqa.selenium.TakesScreenshot)), Sharpen.Runtime.getClassForType(typeof(
-				org.openqa.selenium.JavascriptExecutor))));
+    {
+        /// <exception cref="System.IO.IOException" />
+        public static IWebDriver getDriver()
+        {
+            IWebDriver driverMock = new FirefoxDriver();
+
+
+            /*
+            new Mock<IWebDriver>()(org.mockito.Mockito.withSettings().extraInterfaces(typeof(ITakesScreenshot), typeof(IJavaScriptExecutor))));
 			org.mockito.Mockito.when(asTakingScreenshot(driverMock).getScreenshotAs(org.openqa.selenium.OutputType
 				.BYTES)).thenReturn(ru.yandex.qatools.ashot.util.ImageTool.toByteArray(ru.yandex.qatools.elementscompare.tests.DifferTest
 				.IMAGE_A_SMALL));
-			org.mockito.Mockito.when(asJavascriptExecutor(driverMock).executeScript(org.mockito.Matchers.any
-				<string>())).thenReturn("{0,0,100,100}");
-			return driverMock;
-		}
+			org.mockito.Mockito.when(asJavascriptExecutor(driverMock).ExecuteScript(org.mockito.Matchers.any
+				<string>())).thenReturn("{0,0,100,100}");*/
+            return driverMock;
+        }
 
-		/// <exception cref="System.Exception"/>
-  [TestMethod]
-		public virtual void testDpr()
-		{
-			ru.yandex.qatools.ashot.Screenshot screenshot = new ru.yandex.qatools.ashot.AShot
-				().dpr(2).takeScreenshot(getDriver());
-			NUnit.Framework.Assert.assertThat(screenshot.getImage(), ru.yandex.qatools.ashot.util.ImageTool
-				.equalImage(ru.yandex.qatools.elementscompare.tests.DifferTest.loadImage("img/expected/dpr.png"
-				)));
-		}
+        /// <exception cref="System.Exception" />
+        [TestMethod]
+        [DeploymentItem("img", "./img/")]
+        public virtual void testDpr()
+        {
+            Screenshot screenshot = new AShot().Dpr(2).TakeScreenshot(getDriver());
+            Assert.AreEqual(screenshot.getImage(), ImageTool.equalImage(DifferTest.loadImage("img/expected/dpr.png")));
+        }
 
-		private static org.openqa.selenium.TakesScreenshot asTakingScreenshot(org.openqa.selenium.WebDriver
-			 driver)
-		{
+        private static ITakesScreenshot asTakingScreenshot(IWebDriver
+            driver)
+        {
+            return (ITakesScreenshot) driver;
+        }
 
-			return (org.openqa.selenium.TakesScreenshot)driver;
-		}
-
-		private static org.openqa.selenium.JavascriptExecutor asJavascriptExecutor(IWebDriver
-			 driver)
-		{
-			return (org.openqa.selenium.JavascriptExecutor)driver;
-		}
-	}
+        private static IJavaScriptExecutor asJavascriptExecutor(IWebDriver
+            driver)
+        {
+            return (IJavaScriptExecutor) driver;
+        }
+    }
 }

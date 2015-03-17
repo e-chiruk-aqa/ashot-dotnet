@@ -1,1 +1,0 @@
-D:\sandbox\scm\git\ashot-net\AShotNet.Test\obj\Debug\AShotNet.Test.csprojResolveAssemblyReference.cache

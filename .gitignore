@@ -3,3 +3,8 @@ target
 .idea
 *.iml
 
+
+bin/
+out/
+*.suo
+*.user

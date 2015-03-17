@@ -17,6 +17,6 @@ namespace AShotNet.Cropper
             return cropArea.IsEmpty() ? new Screenshot(image) : this.cropScreenshot(image, cropArea);
         }
 
-        protected internal abstract Screenshot cropScreenshot(Bitmap image, ICollection<Coords> coordsToCompare);
+        public abstract Screenshot cropScreenshot(Bitmap image, ICollection<Coords> coordsToCompare);
     }
 }
