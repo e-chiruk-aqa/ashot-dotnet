@@ -3,6 +3,7 @@ namespace AShotNet.Coordinates
     using System;
     using System.Collections.Generic;
     using System.Drawing;
+    using System.Linq;
 
     /// <author>
     ///     <a href="pazone@yandex-team.ru">Pavel Zorin</a>
@@ -18,7 +19,6 @@ namespace AShotNet.Coordinates
         }
 
         public Coords(int x, int y, int width, int height)
-
         {
             this._rectangle = new Rectangle(x, y, width, height);
         }
@@ -71,7 +71,7 @@ namespace AShotNet.Coordinates
 
         public static Coords unity(ICollection<Coords> coordsCollection)
         {
-            Coords unity = coordsCollection.GetEnumerator().Current;
+            Coords unity = coordsCollection.First();
             foreach (Coords coords in coordsCollection)
             {
                 unity = unity.Union(coords);
@@ -115,6 +115,17 @@ namespace AShotNet.Coordinates
         public bool Contains(Point point)
         {
             return this._rectangle.Contains(point);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (! (obj is Coords))
+            {
+                return false;
+            }
+            
+            var r = (Coords) obj;
+            return r.X == this.X && r.Y == this.Y && r.Width == this.Width && r.Height == this.Height;
         }
     }
 }

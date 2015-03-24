@@ -21,7 +21,8 @@ namespace AShotNet.Test
         public virtual void TestElementOutsideImageDefCropper()
         {
             Screenshot screenshot = new DefaultCropper().cropScreenshot(DifferTest.IMAGE_A_SMALL, new HashSet<Coords>(OUTSIDE_IMAGE));
-            Assert.AreEqual(screenshot.getImage(), ImageTool.equalImage(DifferTest.loadImage("img/expected/outside_dc.png")));
+            var matcher = ImageTool.equalImage(DifferTest.loadImage("img/expected/outside_dc.png"));
+            Assert.IsTrue(matcher.Matches(screenshot.getImage()));
         }
 
         /// <exception cref="System.Exception" />
@@ -30,7 +31,8 @@ namespace AShotNet.Test
         public virtual void TestElementOutsideImageIndentCropper()
         {
             Screenshot screenshot = new IndentCropper(10).cropScreenshot(DifferTest.IMAGE_A_SMALL, new HashSet<Coords>(OUTSIDE_IMAGE));
-            Assert.AreEqual(screenshot.getImage(), ImageTool.equalImage(DifferTest.loadImage("img/expected/outside_ic.png")));
+            var matcher = ImageTool.equalImage(DifferTest.loadImage("img/expected/outside_ic.png"));
+            Assert.IsTrue(matcher.Matches(screenshot.getImage()) );
         }
 
         private sealed class _HashSet_23 : HashSet<Coords>

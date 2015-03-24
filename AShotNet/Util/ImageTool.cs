@@ -4,6 +4,8 @@ namespace AShotNet.Util
     using System.Drawing;
     using System.Drawing.Imaging;
     using System.IO;
+    using System.Linq;
+    using System.Security.Cryptography;
     using Coordinates;
     using Extentions;
     using NHamcrest;
@@ -74,6 +76,27 @@ namespace AShotNet.Util
             public _TypeSafeMatcher_47(Bitmap second)
             {
                 this.second = second;
+            }
+
+            public static byte[] ShaHash(Image image)
+            {
+                var bytes = new byte[1];
+                bytes = (byte[])(new ImageConverter()).ConvertTo(image, bytes.GetType());
+
+                return (new SHA256Managed()).ComputeHash(bytes);
+            }
+
+            public static bool AreEqual(Image imageA, Image imageB)
+            {
+                if (imageA.Width != imageB.Width) return false;
+                if (imageA.Height != imageB.Height) return false;
+
+                var hashA = ShaHash(imageA);
+                var hashB = ShaHash(imageB);
+
+                return !hashA
+                    .Where((nextByte, index) => nextByte != hashB[index])
+                    .Any();
             }
 
             public override bool Matches(Bitmap first)
