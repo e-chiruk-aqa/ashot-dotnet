@@ -4,7 +4,8 @@ target
 *.iml
 
 
-bin/
-out/
-*.suo
-*.user
+# bin/
+# out/
+# obj/
+# *.suo
+# *.user
