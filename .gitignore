@@ -4,8 +4,9 @@ target
 *.iml
 
 
-# bin/
-# out/
-# obj/
-# *.suo
-# *.user
+bin/
+out/
+TestResults/
+obj/
+*.suo
+*.user
