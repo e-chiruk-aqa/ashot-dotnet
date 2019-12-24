@@ -18,19 +18,19 @@ namespace AShotNet.Util
             {
                 Assembly assembly = Assembly.GetExecutingAssembly();
                 string resourceName = "Resources.js.coords-single.js";
+                var resourceFile = new FileInfo(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", "coords-single.js"));
 
                 string result;
 
-                using (Stream stream = assembly.GetManifestResourceStream(resourceName))
+                using (Stream stream = resourceFile.OpenRead())
                 {
                     using (var reader = new StreamReader(stream))
                     {
                         result = reader.ReadToEnd();
                     }
                 }
-
-
-                JObject jsonObj = JObject.Parse(result);
+                var jsResult = ((IJavaScriptExecutor) driver).ExecuteScript(result, element);
+                JObject jsonObj = JObject.Parse(jsResult.ToString());
                 var x = jsonObj["x"].Value<int>();
                 var y = jsonObj["y"].Value<int>();
                 var w = jsonObj["width"].Value<int>();

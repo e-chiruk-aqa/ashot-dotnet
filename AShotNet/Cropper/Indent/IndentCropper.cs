@@ -1,3 +1,5 @@
+using System.IO;
+
 namespace AShotNet.Cropper.Indent
 {
     using System;
@@ -30,10 +32,12 @@ namespace AShotNet.Cropper.Indent
 
         public override Screenshot cropScreenshot(Bitmap image, ICollection<Coords> coordsToCompare)
         {
-            Coords cropArea = this.createCropArea(coordsToCompare);
-            Coords indentMask = this.createIndentMask(cropArea, image);
-            Coords coordsWithIndent = this.applyIndentMask(cropArea, indentMask);
-            Screenshot croppedShot = base.cropScreenshot(image, new HashSet<Coords> {coordsWithIndent});
+            //Coords cropArea = this.createCropArea(coordsToCompare);
+            //Coords indentMask = this.createIndentMask(cropArea, image);
+            //Coords coordsWithIndent = this.applyIndentMask(cropArea, indentMask);
+            var coordsWithIndent = new Coords(0, 0, image.Width, image.Height);
+            //Screenshot croppedShot = base.cropScreenshot(image, new HashSet<Coords> {coordsWithIndent});
+            var croppedShot = new Screenshot(image); 
             croppedShot.setOriginShift(coordsWithIndent);
             croppedShot.setCoordsToCompare(Coords.setReferenceCoords(coordsWithIndent, coordsToCompare));
             IList<NoFilteringArea> noFilteringAreas = this.createNotFilteringAreas(croppedShot);

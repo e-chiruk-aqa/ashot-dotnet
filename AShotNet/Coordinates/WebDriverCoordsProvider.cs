@@ -12,7 +12,7 @@ namespace AShotNet.Coordinates
     {
         public override Coords ofElement(IWebDriver driver, IWebElement element)
         {
-            Point point = element.Location;
+            Point point = ((ILocatable) element).Coordinates.LocationInViewport;
             Size dimension = element.Size;
             return new Coords(point.X, point.Y, dimension.Width, dimension.Height);
         }

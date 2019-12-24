@@ -19,21 +19,21 @@ namespace AShotNet.ScreenTaker
         {
             var js = (IJavaScriptExecutor
                 ) driver;
-            return ((int) js.ExecuteScript("return $(document).height()"));
+            return (int) ((System.Int64) js.ExecuteScript("return window.innerHeight"));
         }
 
         public override int getFullWidth(IWebDriver driver)
         {
             var js = (IJavaScriptExecutor
                 ) driver;
-            return ((int) js.ExecuteScript("return $(window).width()"));
+            return (int) ((System.Int64)js.ExecuteScript("return window.innerWidth"));
         }
 
         public override int getWindowHeight(IWebDriver driver)
         {
             var js = (IJavaScriptExecutor
                 ) driver;
-            return ((int) js.ExecuteScript("return $(window).height()"));
+            return (int) ((System.Int64)js.ExecuteScript("return window.outerHeight"));
         }
     }
 }
